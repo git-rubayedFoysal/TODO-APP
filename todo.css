@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lobster&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lexend", sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Lobster", sans-serif;
+  letter-spacing: 4px;
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+
+.container {
+  background-color: #1e1e1e;
+  color: #fff;
+  width: 40vw;
+  height: 80vh;
+  border: 2px solid #3e3e3e;
+  border-radius: 8px;
+  padding: 40px;
+  margin-top: 10vh;
+  overflow-y: auto;
+  box-shadow: 1px 1px 24px 0px rgba(66, 68, 90, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+#text {
+  font-family: "Lexend", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  overflow-y: hidden;
+  outline: none;
+  background-color: #333;
+  color: #fff;
+}
+
+button {
+  transform: translate(166px, -46.5px);
+  padding: 16px 35px;
+  background-color: #444;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 2px 5px 5px 2px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.5s linear;
+}
+
+button:hover {
+  box-shadow: 1px 1px 8px rgba(66, 68, 90, 1);
+}
+
+.all-task {
+  width: 100%;
+}
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 0.8rem;
+  border: 1px solid #3e3e3e;
+  padding: 10px;
+  border-radius: 3px;
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+input[type="checkbox"] {
+  /* hide default appearance but keep it accessible */
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: all 0.2s;
+}
+
+/* checked state */
+input[type="checkbox"]:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+/* add checkmark using ::after */
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  font-size: 15px;
+}
