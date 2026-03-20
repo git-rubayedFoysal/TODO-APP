@@ -375,3 +375,37 @@ input[type="checkbox"]:checked::after {
     padding: 22px 20px 18px;
   }
 }
+
+/* ── Footer ─────────────────────────────── */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-link:hover {
+  color: var(--text);
+}
+
+.footer-link svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+
+.footer-link:hover svg {
+  opacity: 1;
+}
