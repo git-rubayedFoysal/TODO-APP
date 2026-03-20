@@ -39,12 +39,10 @@ function loadTask() {
   if (!saved) return;
   const parsed = JSON.parse(saved);
   if (!Array.isArray(parsed) || parsed.length === 0) return;
-  // Reconstruct proper Task instances so class methods work on loaded data
   parsed.forEach((t) => allTask.push(new Task(t.text, t.id, t.isComplete)));
 }
 
 function saveTodos() {
-  // Use setItem directly — avoid localStorage.clear() which wipes all keys
   localStorage.setItem("todos", JSON.stringify(allTask));
 }
 
@@ -61,14 +59,12 @@ function renderTask() {
   let c_in = 0;
   let c_co = 0;
 
-  // replaceChildren() is safer than innerHTML = ""
   ulPending.replaceChildren();
   ulComplete.replaceChildren();
 
   const fragPending = document.createDocumentFragment();
   const fragDone = document.createDocumentFragment();
 
-  // forEach for side effects, not map()
   allTask.forEach((t) => {
     const li = buildLi(t);
     if (!t.isComplete) {
@@ -145,7 +141,6 @@ form.addEventListener("submit", (e) => {
 
   allTask.push(new Task(text));
   saveTodos();
-  // Single render path — no dual DOM updates
   renderTask();
   form.reset();
 });
@@ -159,7 +154,6 @@ ulPending.addEventListener("change", (e) => {
 
   const id = Number(li.dataset.id);
 
-  // forEach for side effects, strict === comparison
   allTask.forEach((t) => {
     if (t.id === id) t.markComplete(true);
   });
