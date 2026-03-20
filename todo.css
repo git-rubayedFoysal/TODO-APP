@@ -1,118 +1,377 @@
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lobster&display=swap");
-* {
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap");
+
+/* ── Reset ──────────────────────────────── */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ── Tokens ─────────────────────────────── */
+:root {
+  --bg: #0f0f10;
+  --surface: #18181b;
+  --surface2: #232328;
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.13);
+  --text: #f0efe8;
+  --muted: #7b7a75;
+  --accent: #c5f082;
+  --accent-dk: #8db84e;
+  --danger: #f87171;
+  --check: #4ade80;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+  --transition: 0.2s ease;
+}
+
+/* ── Base ───────────────────────────────── */
+html,
 body {
-  font-family: "Lexend", sans-serif;
-  text-align: center;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 40px 16px 80px;
+  min-height: 100vh;
+}
+
+/* ── App shell ──────────────────────────── */
+.app {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ─────────────────────────────── */
+.app-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 28px 22px;
+}
+
+.header-meta {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
 
 h1 {
-  font-family: "Lobster", sans-serif;
-  letter-spacing: 4px;
-  font-size: 3rem;
-  margin-bottom: 25px;
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 20px;
 }
 
-.container {
-  background-color: #1e1e1e;
-  color: #fff;
-  width: 40vw;
-  height: 80vh;
-  border: 2px solid #3e3e3e;
-  border-radius: 8px;
-  padding: 40px;
-  margin-top: 10vh;
-  overflow-y: auto;
-  box-shadow: 1px 1px 24px 0px rgba(66, 68, 90, 1);
+.progress-track {
+  height: 3px;
+  background: var(--border2);
+  border-radius: 99px;
   overflow: hidden;
-  cursor: pointer;
+  margin-bottom: 14px;
 }
 
-::-webkit-scrollbar {
-  width: 0px;
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+.stats-row {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stats-row b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Add form ───────────────────────────── */
+.add-form {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.add-form:focus-within {
+  border-color: var(--border2);
 }
 
 #text {
-  font-family: "Lexend", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 15px 10px;
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 16px 18px;
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  width: 100%;
-  overflow-y: hidden;
   outline: none;
-  background-color: #333;
-  color: #fff;
+  color: var(--text);
+  caret-color: var(--accent);
 }
 
-button {
-  transform: translate(166px, -46.5px);
-  padding: 16px 35px;
-  background-color: #444;
-  color: #fff;
-  outline: none;
+#text::placeholder {
+  color: var(--muted);
+}
+
+.add-form button[type="submit"] {
+  width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #0f0f10;
   border: none;
-  border-radius: 2px 5px 5px 2px;
-  font-weight: 700;
-  font-size: 0.8rem;
   cursor: pointer;
-  transition: all 0.5s linear;
+  transition: background var(--transition);
+  flex-shrink: 0;
 }
 
-button:hover {
-  box-shadow: 1px 1px 8px rgba(66, 68, 90, 1);
+.add-form button[type="submit"]:hover {
+  background: #d4f59a;
 }
 
-.all-task {
-  width: 100%;
+.add-form button[type="submit"]:active {
+  background: var(--accent-dk);
 }
+
+/* ── Task sections ──────────────────────── */
+.task-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Task list ──────────────────────────── */
 ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 li {
-  font-size: 0.8rem;
-  border: 1px solid #3e3e3e;
-  padding: 10px;
-  border-radius: 3px;
-  text-align: left;
-  font-weight: 700;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+  animation: slide-in 0.2s ease;
 }
 
+li:hover {
+  border-color: var(--border2);
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+li.removing {
+  animation: fade-out 0.25s ease forwards;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+/* ── Checkbox ───────────────────────────── */
 input[type="checkbox"] {
-  /* hide default appearance but keep it accessible */
   appearance: none;
+  -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #555;
-  border-radius: 4px;
+  border: 1.5px solid var(--border2);
+  border-radius: 50%;
   position: relative;
   cursor: pointer;
-  vertical-align: middle;
-  margin-right: 8px;
-  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all var(--transition);
+  background: transparent;
 }
 
-/* checked state */
+input[type="checkbox"]:hover {
+  border-color: var(--check);
+}
+
 input[type="checkbox"]:checked {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background: var(--check);
+  border-color: var(--check);
 }
 
-/* add checkmark using ::after */
 input[type="checkbox"]:checked::after {
-  content: "✔";
-  color: white;
+  content: "";
   position: absolute;
-  top: -2px;
-  left: 2px;
-  font-size: 15px;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 9px;
+  border: 2px solid #0f0f10;
+  border-top: none;
+  border-left: none;
+  transform: rotate(40deg);
+}
+
+/* ── Task text ──────────────────────────── */
+.task-text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  color: var(--text);
+  transition: color var(--transition);
+  user-select: none;
+}
+
+.task-text.expanded {
+  white-space: normal;
+  text-overflow: unset;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Completed items */
+#completeLists li {
+  opacity: 0.6;
+}
+
+#completeLists .task-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Checkmark icon for completed */
+.done-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--check);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.done-icon::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 9px;
+  border: 2px solid #0f0f10;
+  border-top: none;
+  border-left: none;
+  transform: rotate(40deg) translate(-1px, -1px);
+}
+
+/* ── Empty states ───────────────────────── */
+.empty-hint {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* ── Clear button ───────────────────────── */
+#btn {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 99px;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+#btn:hover {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: rgba(248, 113, 113, 0.5);
+}
+
+/* ── Scrollbar ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 520px) {
+  body {
+    padding: 20px 12px 60px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .app-header {
+    padding: 22px 20px 18px;
+  }
 }

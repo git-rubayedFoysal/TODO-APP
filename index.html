@@ -3,27 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TO-DO LIST APP</title>
+    <title>Tasks</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230f0f10'/><rect x='7' y='15' width='12' height='12' rx='3' fill='none' stroke='%23c5f082' stroke-width='1.8'/><path d='M11 21l2.5 2.5L18 18' stroke='%23c5f082' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/><path d='M13 10h10M13 14h7' stroke='%237b7a75' stroke-width='1.8' stroke-linecap='round'/></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./todo.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>TO-DO LIST</h1>
-      <form>
+    <div class="app">
+      <header class="app-header">
+        <div class="header-meta" id="dateChip"></div>
+        <h1>My Tasks</h1>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+        <div class="stats-row">
+          <span><b id="countIn">0</b> remaining</span>
+          <span><b id="countCo">0</b> done</span>
+        </div>
+      </header>
+
+      <form class="add-form" novalidate>
         <input
           type="text"
           id="text"
           name="task"
-          placeholder="ADD NEW TASK"
+          placeholder="Add a new task…"
           autocomplete="off"
           required
         />
-        <button type="submit">ADD</button>
+        <button type="submit" aria-label="Add task">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8 2v12M2 8h12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
       </form>
-      <h3 style="margin: -15px 0 10px 0">All Incomplete Task</h3>
-      <div id="all-task">
-        <ul id="lists"></ul>
-      </div>
+
+      <section class="task-section">
+        <div class="section-head">
+          <span class="section-label">In progress</span>
+        </div>
+        <ul id="pendingLists"></ul>
+        <p class="empty-hint" id="emptyPending">
+          Nothing here — you're all clear!
+        </p>
+      </section>
+
+      <section class="task-section">
+        <div class="section-head">
+          <span class="section-label">Completed</span>
+          <button type="button" id="btn">Clear all</button>
+        </div>
+        <ul id="completeLists"></ul>
+        <p class="empty-hint" id="emptyComplete">Completed tasks appear here</p>
+      </section>
     </div>
     <script src="./todo.js"></script>
   </body>
